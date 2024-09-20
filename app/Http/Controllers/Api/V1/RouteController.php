@@ -98,7 +98,7 @@ class RouteController extends Controller
         }
     }
 
-    private function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371)
+    public function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371)
     {
         $latitudeFrom = deg2rad($latitudeFrom);
         $longitudeFrom = deg2rad($longitudeFrom);
