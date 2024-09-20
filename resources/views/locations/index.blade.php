@@ -58,7 +58,9 @@
                                     {{ $location->marker_color }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
-                                    <a href="{{ route('locations.edit', $location) }}" class="underline">Edit</a>
+                                    <a href="{{ route('locations.show', $location) }}" class="text-blue-500 underline">Show</a>
+                                        |
+                                    <a href="{{ route('locations.edit', $location) }}" class="text-yellow-500 underline">Edit</a>
                                         |
                                         <form action="{{ route('locations.destroy', $location) }}"
                                               method="POST"
