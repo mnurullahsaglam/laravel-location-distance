@@ -32,4 +32,5 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        run: npm install && npm run build
       run: php artisan test
