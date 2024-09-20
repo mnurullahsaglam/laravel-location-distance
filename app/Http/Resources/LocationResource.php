@@ -14,6 +14,7 @@ class LocationResource extends JsonResource
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'marker_color' => $this->marker_color,
+            'distance' => isset($this->distance) ? round($this->distance, 2) : null,
         ];
     }
 }
