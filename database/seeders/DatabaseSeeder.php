@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        Location::factory(100)->create();
+        Location::factory(5)->create();
     }
 }
