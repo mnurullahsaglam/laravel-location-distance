@@ -9,7 +9,7 @@ test('locations can be deleted', function () {
 
     $response = $this
         ->actingAs($user)
-        ->delete('/api/v1/locations/' . $location->id);
+        ->delete('/api/v1/locations/'.$location->id);
 
     $response->assertStatus(204);
 
