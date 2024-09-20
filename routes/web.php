@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('locations', LocationController::class);
+    Route::get('map', [MapController::class, 'index'])->name('map.index');
 });
 
 require __DIR__.'/auth.php';
