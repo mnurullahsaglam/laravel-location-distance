@@ -3,31 +3,19 @@
 use App\Models\Location;
 use App\Models\User;
 
-test('locations.create page can be displayed', function () {
-    $user = User::factory()->create();
-
-    $response = $this
-        ->actingAs($user)
-        ->get('/locations/create');
-
-    $response->assertOk();
-});
-
 test('locations can be created', function () {
     $user = User::factory()->create();
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', [
+        ->post('/api/v1/locations', [
             'name' => 'Test Location',
             'latitude' => '87.654321',
             'longitude' => '123.456789',
             'marker_color' => '#ff0000',
         ]);
 
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/locations');
+    $response->assertStatus(201);
 
     $this->assertDatabaseHas('locations', [
         'name' => 'Test Location',
@@ -42,7 +30,7 @@ test('locations required fields', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', []);
+        ->post('/api/v1/locations', []);
 
     $response->assertSessionHasErrors([
         'name' => 'The name field is required.',
@@ -58,7 +46,7 @@ test('name field must be unique', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', [
+        ->post('/api/v1/locations', [
             'name' => $location->name,
             'latitude' => '87.654321',
             'longitude' => '123.456789',
@@ -75,7 +63,7 @@ test('locations name field min length validation', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', [
+        ->post('/api/v1/locations', [
             'name' => str_repeat('a', 1),
             'latitude' => '87.654321',
             'longitude' => '123.456789',
@@ -92,7 +80,7 @@ test('locations name field max length validation', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', [
+        ->post('/api/v1/locations', [
             'name' => str_repeat('a', 256),
             'latitude' => '87.654321',
             'longitude' => '123.456789',
@@ -109,7 +97,7 @@ test('location latitude field min value validation', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', [
+        ->post('/api/v1/locations', [
             'name' => 'Test Location',
             'latitude' => '-90.000001',
             'longitude' => '123.456789',
@@ -126,7 +114,7 @@ test('location latitude field max value validation', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', [
+        ->post('/api/v1/locations', [
             'name' => 'Test Location',
             'latitude' => '90.000001',
             'longitude' => '123.456789',
@@ -143,7 +131,7 @@ test('location longitude field min value validation', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', [
+        ->post('/api/v1/locations', [
             'name' => 'Test Location',
             'latitude' => '-90.00000',
             'longitude' => '-180.000001',
@@ -160,7 +148,7 @@ test('location longitude field max value validation', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', [
+        ->post('/api/v1/locations', [
             'name' => 'Test Location',
             'latitude' => '90.00000',
             'longitude' => '180.000001',
@@ -177,7 +165,7 @@ test('marker color must be hex color', function () {
 
     $response = $this
         ->actingAs($user)
-        ->post('/locations', [
+        ->post('/api/v1/locations', [
             'name' => 'Test Location',
             'latitude' => '87.654321',
             'longitude' => '123.456789',

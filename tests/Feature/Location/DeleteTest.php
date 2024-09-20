@@ -9,11 +9,9 @@ test('locations can be deleted', function () {
 
     $response = $this
         ->actingAs($user)
-        ->delete('/locations/' . $location->id);
+        ->delete('/api/v1/locations/' . $location->id);
 
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/locations');
+    $response->assertStatus(204);
 
     $this->assertNull(Location::find($location->id));
 });

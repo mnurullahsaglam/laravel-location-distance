@@ -3,25 +3,17 @@
 use App\Models\Location;
 use App\Models\User;
 
-test('locations.index page can be displayed', function () {
+test('locations list can be returned', function () {
     $user = User::factory()->create();
+    $locations = Location::factory(3)->create();
 
     $response = $this
         ->actingAs($user)
-        ->get('/locations');
+        ->get('/api/v1/locations');
 
-    $response->assertOk();
-});
+    $response->assertStatus(200);
 
-test('locations.index page contains locations', function () {
-    $user = User::factory()->create();
-    $locations = Location::factory()->count(3)->create();
-
-    $response = $this
-        ->actingAs($user)
-        ->get('/locations');
-
-    $response->assertSee($locations[0]->name);
-    $response->assertSee($locations[1]->name);
-    $response->assertSee($locations[2]->name);
+    $locations->each(function ($location) use ($response) {
+        $response->assertSee($location->name);
+    });
 });
