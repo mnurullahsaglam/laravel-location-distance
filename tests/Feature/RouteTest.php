@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\V1\RouteController;
 
 it('calculates the correct distance between two points', function ($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $expectedDistance) {
-    $routeController = new RouteController();
+    $routeController = new RouteController;
 
     $calculatedDistance = $routeController->haversineGreatCircleDistance(
         $latitudeFrom,

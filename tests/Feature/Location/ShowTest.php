@@ -9,7 +9,7 @@ test('locations can be displayed', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/api/v1/locations/' . $location->id);
+        ->get('/api/v1/locations/'.$location->id);
 
     $response->assertStatus(200);
 });
