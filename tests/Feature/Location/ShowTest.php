@@ -9,7 +9,7 @@ test('locations.show page can be displayed', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get('/locations/' . $location->id);
+        ->get('/locations/'.$location->id);
 
     $response->assertOk();
 });

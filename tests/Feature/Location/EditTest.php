@@ -9,7 +9,7 @@ test('locations can be updated', function () {
 
     $response = $this
         ->actingAs($user)
-        ->patch('/api/v1/locations/' . $location->id, [
+        ->patch('/api/v1/locations/'.$location->id, [
             'name' => 'Updated Location',
             'latitude' => '87.654321',
             'longitude' => '123.456789',

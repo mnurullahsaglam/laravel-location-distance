@@ -94,6 +94,7 @@ class RouteController extends Controller
                 $newPerms[] = $items[$i];
                 $result = array_merge($result, $this->getPermutations($newItems, $newPerms));
             }
+
             return $result;
         }
     }
